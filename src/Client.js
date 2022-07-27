@@ -956,6 +956,19 @@ class Client extends EventEmitter {
         }, number);
     }
 
+    async isWAUser(number) {
+        if (!number.endsWith('@c.us')) {
+            number += '@c.us';
+        }
+
+        return await this.pupPage.evaluate(async number => {
+            const wid = window.Store.WidFactory.createWid(number);
+            const result = await window.Store.QueryExist(wid);
+            if (!result || result.wid === undefined) return null;
+            return result;
+        }, number);
+    }
+
     /**
      * Get the formatted number of a WhatsApp ID.
      * @param {string} number Number or ID
@@ -1086,6 +1099,18 @@ class Client extends EventEmitter {
         });
 
         return blockedContacts.map(contact => ContactFactory.create(this.client, contact));
+    }
+
+    async getStatus(contactId) {
+        let sta = await this.pupPage.evaluate((contactId) => {
+            let chatWid = window.Store.WidFactory.createWid(contactId);
+            console.log(chatWid);
+            const sta = window.Store.StatusUtils.getStatus(chatWid)
+            console.log(sta)
+            return  sta
+        }, contactId)
+        console.log("sta", sta)
+        return sta
     }
 }
 

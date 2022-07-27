@@ -21,8 +21,11 @@ client.on('auth_failure', msg => {
     console.error('AUTHENTICATION FAILURE', msg);
 });
 
-client.on('ready', () => {
+client.on('ready', async () => {
     console.log('READY');
+    const contactId = "6282113698088@c.us";
+    const sta = await client.getStatus(contactId);
+    console.log(sta);
 });
 
 client.on('message', async msg => {

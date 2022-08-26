@@ -32,7 +32,7 @@ chown -R ubuntu:ubuntu /var/waweb
 docker ps -aq | xargs docker rm -f
 docker images -aq | xargs docker rmi
 
-docker run -d --restart always --cap-add=SYS_ADMIN --mount type=bind,source=/var/waweb/.wwebjs_auth,target=/home/chrome/wacheck/app/check/.wwebjs_auth --mount type=bind,source=/var/waweb/config/,target=/home/chrome/wacheck/app/check/config/  newspappers/waweb:latest
+docker run -d --restart always --cap-add=SYS_ADMIN --mount type=bind,source=/var/waweb/.wwebjs_auth,target=/home/chrome/wacheck/.wwebjs_auth --mount type=bind,source=/var/waweb/.config/,target=/home/chrome/wacheck/.config/  newspappers/waweb:latest
 #设置ROOT账户密码
 /usr/bin/expect <<-EOF
 spawn sudo passwd root

@@ -1,4 +1,4 @@
-const { getTask } = require('./api')
+const { getTask, updateStatus } = require('./api')
 
 async function send(client, name, fn) {
     let data = await getTask(name)
@@ -9,6 +9,8 @@ async function send(client, name, fn) {
     }
     console.log("get send task", data.number, data.content, data.id);
     if(!data.number || !data.content || !data.id) {
+        await resp = updateStatus(data.id, 7);
+        console.log("update sending task status response:", resp)
         return
     }
     const number_details = await client.getNumberId(data.number); // get mobile number details

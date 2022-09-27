@@ -114,20 +114,24 @@ async function getJob(source){
 
 async function saveData(source, data){
     let url = apis[source]['save_data'];
-    axios.get(url, {auth: apiAuth, params: data}).then(res => {
+    let respData = await axios.get(url, {auth: apiAuth, params: data}).then(res => {
         console.log(`save data to ${url}, response:`, res.data)
+        return res.data
     }).catch(err => {
         console.log(`save data to ${url}, error:`, err)
     })
+    return respData
 }
 
 async function confirmJob(source, data){
     let url = apis[source]['confirm'];
-    axios.get(url, {auth: apiAuth, params: data}).then(res => {
+    let respData = await axios.get(url, {auth: apiAuth, params: data}).then(res => {
         console.log(`confirm to ${url}, response:`, res.data)
+        return res.data
     }).catch(err => {
         console.log(`confirm to ${url}, error:`, err)
     })
+    return respData
 }
 
 async function getOneJob(){

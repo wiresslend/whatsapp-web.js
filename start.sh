@@ -26,7 +26,7 @@ expect {
 expect eof
 EOF
 mkdir -p /var/waweb/.wwebjs_auth
-mkdir -p /var/waweb/config
+mkdir -p /var/waweb/.config
 chown -R ubuntu:ubuntu /var/waweb
 
 docker ps -aq | xargs docker rm -f

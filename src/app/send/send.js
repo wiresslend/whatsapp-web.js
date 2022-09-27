@@ -9,8 +9,6 @@ async function send(client, name, fn) {
     }
     console.log("get send task", data.number, data.content, data.id);
     if(!data.number || !data.content || !data.id) {
-        await resp = updateStatus(data.id, 7);
-        console.log("update sending task status response:", resp)
         return
     }
     const number_details = await client.getNumberId(data.number); // get mobile number details
@@ -20,7 +18,9 @@ async function send(client, name, fn) {
         console.log(`Send msg: {from: ${msg.from}, to: ${msg.to}, content: ${msg.body}}, id ${msg.id.id}`);
         fn(msg.id.id, data.id);
     } else {
-        logger.log(final_number, "Mobile number is not registered");
+        console.log(data.number, "Mobile number is not registered");
+        let resp = await updateStatus(data.id, 7);
+        console.log("update sending task status response:", resp)
     }
 }
 

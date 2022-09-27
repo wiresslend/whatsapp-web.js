@@ -141,7 +141,7 @@ async function init(){
 
 async function report() {
     console.log(`report status: name: ${globalStore.name}, cap: ${globalStore.cap}, banned: ${globalStore.is_banned}`);
-    let resp = await statusReport(globalStore.name, globalStore.num,  globalStore.cap, globalStore._status, 'w20220906.1');
+    let resp = await statusReport(globalStore.name, globalStore.num,  globalStore.cap, globalStore._status, 'w20220927.1');
     console.log("globalStore", globalStore);
     if(!resp) {
         return

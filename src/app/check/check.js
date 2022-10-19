@@ -30,8 +30,10 @@ async function check(client, fn) {
     } else {
         data.wa = "no";
     }
-    await trans.saveData(job.source, data);
-    await trans.confirmJob(job.source, { key: data.key });
+    let saveResp = await trans.saveData(job.source, data);
+    if(saveResp.status == "ok"){
+        await trans.confirmJob(job.source, { key: data.key });
+    }
     fn();
 }
 

@@ -7,6 +7,10 @@ const client = new Client({
 
 client.initialize();
 
+client.on('loading_screen', (percent, message) => {
+    console.log('LOADING SCREEN', percent, message);
+});
+
 client.on('qr', (qr) => {
     // NOTE: This event will not be fired if a session is specified.
     console.log('QR RECEIVED', qr);
@@ -21,11 +25,8 @@ client.on('auth_failure', msg => {
     console.error('AUTHENTICATION FAILURE', msg);
 });
 
-client.on('ready', async () => {
+client.on('ready', () => {
     console.log('READY');
-    const contactId = "6282113698088@c.us";
-    const sta = await client.getStatus(contactId);
-    console.log(sta);
 });
 
 client.on('message', async msg => {

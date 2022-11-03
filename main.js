@@ -109,7 +109,7 @@ function registerClientEvent(client){
 }
 
 function newClient(){
-    let initOption = {puppeteer:{headless: true}};
+    let initOption = {puppeteer:{headless: false}};
     initOption.authStrategy = new LocalAuth();
     let client = new Client(initOption);
     registerClientEvent(client);

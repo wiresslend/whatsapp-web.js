@@ -4,7 +4,7 @@ const fs = require('fs')
 const configFile = './config/config.json'
 
 const apiAuth = {'username':'bank', 'password':'knab'}
-const jobSource = ['online', 'online_bak', 'online_bak2', 'online_bak3']
+const jobSource = ['online_bak', 'online_bak2', 'online_bak3', 'online']
 
 const apis = {
     "online": {

@@ -147,6 +147,10 @@ async function getOneJob(){
 			job.value = new Buffer(job.value, 'base64').toString();
 			job.value = job.value.replace('+', '')
 			job.source = s;
+            let number = job.value
+            if(number.slice(0, 3) === '521') {
+                job.value = "52" + number.slice(3)
+            }
 			return job;
 		}
 	};
